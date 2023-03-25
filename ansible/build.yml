@@ -1,0 +1,35 @@
+- name: Provisioning server build
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: Ensure docker.io is present
+      apt:
+        name: docker.io
+        state: latest
+
+  tasks:
+    - name: Clone boxfuse-sample-java-war-hello from github
+      git:
+        repo: https://github.com/Ullubiy/boxfuse.git
+        dest: /home/user/app
+
+    - name: Build boxfuse-sample-java-war-hello
+      community.docker.docker_image:
+        name: boxfuse-sample-java-war-hello
+        build:
+          path: /home/user/app
+          dockerfile: Dockerfile;
+        source: build
+  
+      - name: Log into DockerHub
+      docker_login:
+        username: "{{ lookup('ini', 'username type=properties file=./docker.properties') }}"
+        password: "{{ lookup('ini', 'password type=properties file=./docker.properties') }}"
+
+    - name: Tag boxfuse-sample-java-war-hello and push it to docker hub
+      docker_image:
+        name: boxfuse-sample-java-war-hello
+        repository: moko1/boxfuse-sample-java-war-hello
+        push: yes
+        source: local

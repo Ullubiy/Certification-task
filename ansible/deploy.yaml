@@ -1,0 +1,18 @@
+- name: Provisioning server deploy
+  hosts: deploy
+  become: yes
+
+  tasks:
+    - name: Pull a boxfuse-sample-java-war-hello image
+      docker_image:
+        name: moko1/boxfuse-sample-java-war-hello
+        source: pull
+
+    - name: Start a container with a boxfuse-sample-java-war-hello image
+      docker_container:
+        name: boxfuse-sample-java-war-hello
+        image: moko1/boxfuse-sample-java-war-hello
+        working_dir: /app
+        command: ["java", "-war", "target/hello-1.0.war"]
+        ports:
+          - "8080:8080"

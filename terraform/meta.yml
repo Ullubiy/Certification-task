@@ -1,0 +1,14 @@
+#cloud-config
+users:
+  - name: user
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCS8hrtaLcBsxQIioPAlTCgWTGP2928U0ufbeQWootsWEgCxbMTcaYYtJ1vWMvxfb5vDO+BOmOzD2UZGhf3nKbf73ua32xCHqvXEWv23O4Wza/cEUzNCjdKgsjqFH8f6SNhIAtC/kJCab6PWhGxPt4UGk6QFI26T4tXGiYquI6uJeO7WaWFsisVyMROi7C7vILGPOEWznLLegZM3ooGDczSNwKla7iyBiTFQkD45L2OFTN3mXb7uQCCp6ki6aaKbZ4hXv/Sq30XNLXNo1NxHlKTslv15wKC3qKmyOK/d5kwgA+rXHCVltl0LKCYI82RFceepwiTJjkHTIJLoONqxOWr rsa-key-20230317
+- name: jenkins
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtAxJ5GK8gNhgV9mpvT7wtf1KQagzZZZwJVLdHnq43ava+5/PiRTW5BpI55IfcffE/JrDEXL2cAgqngu0KlrytgNJ+Gf1OL+abvHa7f7Y9ieBBvxVWXhpyD375kYYsg+y5f2RPcXG1G8KyVWIRLC5IoT+wFfGBBNNIJC6rcqx9kk6yy+yj4IH5p+Tuahf89utz/rzzIDtji9fCp/6fRAnavsjtJgoqmA/TfbkG6Bm65CExWbGOTaTpf+1TuWn4me0Frklsjqhz8yZipRaX/JVgHfQdFg3CvvGutDC6xnLlMkMIL7pSn829BzBDSgvcFJri/nDk7DlSdHCRC4ylTSgPgYXdWns6TjUN5Kp7rzwHSADBgCQ1GYp0MKD6lsgCMafZ47HuQZP+q/+JwXF/9yMUtRjsRcvqr2sa8CoDHaWDp7jlfI0/aNXEbzD07ingx+I7/FGo/yw7zsLE2PA3Kxx9QRad71zb1GGj5qdasWdTzuGcygkH7McoGxxQKH5oOE= jenkins@ubuntu-22-4-cert

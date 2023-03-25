@@ -1,0 +1,36 @@
+- name: Adding host's build to local config
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Add host as build
+      add_host:
+        hostname: "{{ (lookup('file', '../address.json') | from_json).get('build_ip') }}"
+        groups: build
+
+- name: Adding host's deploy to local config
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Add host as deploy
+      add_host:
+        hostname: "{{ (lookup('file', '../address.json') | from_json).get('deploy_ip') }}"
+        groups: deploy
+
+
+- name: Provisioning docker in host
+  hosts: build
+  become: yes
+
+  tasks:
+    - name: Ensure docker is present
+      apt:
+        name: docker.io
+        state: latest
+
+    - name: Ensure python is present
+      apt:
+        name: python
+        state: latest
+      
